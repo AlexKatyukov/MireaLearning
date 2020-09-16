@@ -14,77 +14,76 @@ namespace BSMO0220_Katyukov_IIS_LR1
    *  Показать варианты технического обслуживание автомобиля через типовые операции
    */
 
-  public class AbstractOperations
+  public class StandartTO
   {
-    public void Go()
+    public virtual void StartTO()
     {
-      Operation1();
-      Operation2();
-      Operation3();
-      Operation4();
-      Operation5();
+      Take();
+      ChangeOil();
+      ChangeBreaks();
+      ChangeFilter();
+      Billing();
     }
 
-    public void Operation1()
+    public virtual void Take()
     {
       Console.WriteLine("Загоняем автомобиль в бокс");
     }
 
-    public void Operation2()
+    public virtual void ChangeOil()
     {
       Console.WriteLine("Меняем масло");
     }
 
-    public void Operation3()
+    public virtual void ChangeBreaks()
     {
       Console.WriteLine("Меняем тормозные диски");
     }
 
-    public void Operation4()
+    public virtual void ChangeFilter()
     {
       Console.WriteLine("Меняем топливный фильтр");
     }
 
-    public void Operation5()
+    public virtual void Billing()
     {
       Console.WriteLine("Выписываем акт и выдаём автомобиль");
     }
   }
 
-  public class MotoOperations : AbstractOperations
+  public class MotoTO : StandartTO
   {
-    public void Operation1()
+
+
+    public override void Take()
     {
       Console.WriteLine("Загоняем мотоцикл в бокс");
     }
-    public void Operation3()
+    public override void ChangeBreaks()
     {
       Console.WriteLine("Меняем тормозные колодки");
     }
 
-    public void Operation4()
-    {
-      Console.WriteLine("Меняем систему зажигания");
-    }
-
-    public void Operation5()
+    public override void Billing()
     {
       Console.WriteLine("Выписываем акт и выдаём мотоцикл");
     }
   }
 
-  public class GruzovikOperations : AbstractOperations
+  public class GruzovikTO : StandartTO
   {
-    public void Operation2()
+
+
+    public override void ChangeOil()
     {
       Console.WriteLine("Матерясь, меняем масло");
     }
-    public void Operation3()
+    public override void ChangeBreaks()
     {
       Console.WriteLine("Матерясь, меняем тормозные колодки");
     }
 
-    public void Operation4()
+    public override void ChangeFilter()
     {
       Console.WriteLine("Матерясь, меняем топливный фильтр");
     }
@@ -95,17 +94,15 @@ namespace BSMO0220_Katyukov_IIS_LR1
       
     static void Main(string[] args)
     {
-      var moto = new MotoOperations();
+      var moto = new MotoTO();
 
-      var gruz = new GruzovikOperations();
+      var gruz = new GruzovikTO();
 
-      moto.Go();
+      moto.StartTO();
       
       Console.WriteLine();
 
-      gruz.Go();
-
-
+      gruz.StartTO();
     }
   }
 }
