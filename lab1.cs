@@ -14,79 +14,98 @@ namespace BSMO0220_Katyukov_IIS_LR1
    *  Показать варианты технического обслуживание автомобиля через типовые операции
    */
 
-  class Operations
+  public class AbstractOperations
   {
-    public static void Operation1()
+    public void Go()
+    {
+      Operation1();
+      Operation2();
+      Operation3();
+      Operation4();
+      Operation5();
+    }
+
+    public void Operation1()
     {
       Console.WriteLine("Загоняем автомобиль в бокс");
     }
 
-    public static void Operation2()
+    public void Operation2()
     {
       Console.WriteLine("Меняем масло");
     }
 
-    public static void Operation3()
+    public void Operation3()
     {
       Console.WriteLine("Меняем тормозные диски");
     }
 
-    public static void Operation4()
+    public void Operation4()
     {
       Console.WriteLine("Меняем топливный фильтр");
     }
 
-    public static void Operation5()
+    public void Operation5()
     {
       Console.WriteLine("Выписываем акт и выдаём автомобиль");
     }
   }
 
-  class TO1 : Operations
+  public class MotoOperations : AbstractOperations
   {
-      
-    static void Main(string[] args)
+    public void Operation1()
     {
-      Operation1();
-      Operation2();
-      Operation5();
+      Console.WriteLine("Загоняем мотоцикл в бокс");
+    }
+    public void Operation3()
+    {
+      Console.WriteLine("Меняем тормозные колодки");
+    }
+
+    public void Operation4()
+    {
+      Console.WriteLine("Меняем систему зажигания");
+    }
+
+    public void Operation5()
+    {
+      Console.WriteLine("Выписываем акт и выдаём мотоцикл");
     }
   }
-  
-  class TO2 : Operations
+
+  public class GruzovikOperations : AbstractOperations
   {
-      
-    static void Main(string[] args)
+    public void Operation2()
     {
-      Operation1();
-      Operation2();
-      Operation4();
-      Operation5();
+      Console.WriteLine("Матерясь, меняем масло");
+    }
+    public void Operation3()
+    {
+      Console.WriteLine("Матерясь, меняем тормозные колодки");
+    }
+
+    public void Operation4()
+    {
+      Console.WriteLine("Матерясь, меняем топливный фильтр");
     }
   }
-  
-  class TO3 : Operations
+
+  class Program
   {
       
     static void Main(string[] args)
     {
-      Operation1();
-      Operation2();
-      Operation3();
-      Operation5();
-    }
-  }
-  
-  class TO4 : Operations
-  {
+      var moto = new MotoOperations();
+
+      var gruz = new GruzovikOperations();
+
+      moto.Go();
       
-    static void Main(string[] args)
-    {
-      Operation1();
-      Operation2();
-      Operation3();
-      Operation4();
-      Operation5();
+      Console.WriteLine();
+
+      gruz.Go();
+
+
     }
   }
 }
